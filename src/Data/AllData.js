@@ -1,0 +1,22 @@
+import axios from 'axios';
+import React, { createContext, useEffect, useState } from 'react'
+const apiValue = createContext();
+
+
+function AllData({children}) {
+    const [text , setText] = useState([]);
+    useEffect(()=>{
+     axios.get("https://lisp-reversion-undertone.ngrok-free.dev/api/cars")
+     .then((element)=>{
+        console.log(element)
+      //   setText(element.data.products)
+     })
+    },[]);
+  return (
+   <apiValue.Provider value={text}>
+      {children}
+   </apiValue.Provider>
+  )
+}
+
+export {AllData,apiValue};
